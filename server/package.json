@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.8.0",
+    "@types/cors": "^2.8.17",
     "prisma-erd-generator": "^1.11.2",
     "tsup": "^8.0.2"
   }
