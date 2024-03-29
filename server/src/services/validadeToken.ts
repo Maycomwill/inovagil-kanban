@@ -3,7 +3,6 @@ import prisma from "../lib/prisma";
 
 interface JwtPayload {
   id: string;
-  email: string;
   iat: number;
   exp: number;
 }
@@ -12,11 +11,21 @@ export async function validateToken(token: string) {
     token,
     String(process.env.JWTSECRET)
   ) as JwtPayload;
+  if (!decodedToken) {
+    return { valid: false, data: null };
+  }
   const user = await prisma.user.findUnique({
     where: {
-      email: decodedToken.email,
+      id: decodedToken.id,
+    },
+    select: {
+      categories: true,
+      createdAt: true,
+      email: true,
+      id: true,
+      name: true,
     },
   });
 
-  return user;
+  return { valid: true, data: user };
 }

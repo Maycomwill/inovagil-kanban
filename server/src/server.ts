@@ -4,6 +4,7 @@ import cors from "cors";
 import { UserRouter } from "./routes/user";
 import { CategoryRouter } from "./routes/category";
 import { TasksRouter } from "./routes/tasks";
+import { AuthRouter } from "./routes/auth";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(
 app.use("/user", UserRouter);
 app.use("/categories", CategoryRouter);
 app.use("/tasks", TasksRouter);
+app.use("/auth", AuthRouter);
 
 const port = Number(process.env.PORT);
 
