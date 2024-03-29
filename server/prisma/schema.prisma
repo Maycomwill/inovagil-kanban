@@ -18,3 +18,28 @@ generator erd {
   output   = "../ERD.svg"
   theme    = "dark"
 }
+
+model User {
+  name       String
+  id         String       @id @default(cuid())
+  email      String       @unique
+  password   String
+  categories Categories[]
+}
+
+model Categories {
+  name    String
+  id      String  @id @default(cuid())
+  ownerId String
+  tasks   Tasks[]
+
+  User User? @relation(fields: [ownerId], references: [id])
+}
+
+model Tasks {
+  name       String
+  id         String @id @default(cuid())
+  categoryId String
+
+  Categories Categories? @relation(fields: [categoryId], references: [id])
+}
