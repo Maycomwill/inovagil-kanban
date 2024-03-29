@@ -1,4 +1,6 @@
 {
+  "version": "0.0.0",
+  "name": "kanban-server",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsup src/server.ts",

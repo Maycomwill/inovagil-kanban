@@ -12,7 +12,7 @@ config();
 
 app.use(
   cors({
-    origin: ["*"],
+    origin: "*",
   })
 );
 app.use("/user", UserRouter);
