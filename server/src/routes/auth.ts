@@ -81,10 +81,10 @@ router.post("/verify", json(), async (req, res) => {
   if (verify.valid === false) {
     return res
       .status(401)
-      .send({ message: "Token inválido", data: verify.data });
+      .send({ message: "Token inválido", data: verify.data, status: false });
   }
 
-  return res.status(200).send({ message: "Token válido", data: verify.data });
+  return res.status(200).send({ message: "Token válido", data: verify.data, status: true });
 });
 
 export const AuthRouter = router;
