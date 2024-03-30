@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { TasksContext, TasksContextProps } from "../context/tasks";
 
-export function useCategories(): TasksContextProps {
+export function useTasks(): TasksContextProps {
   const context = useContext(TasksContext);
   return context;
 }
