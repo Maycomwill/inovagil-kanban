@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useAuth } from "../../hooks/useAuth";
 import { useUser } from "../../hooks/useUser";
 import Loading from "../../components/Loading";
 
@@ -14,9 +13,9 @@ import {
 import TaskCard from "../../components/TaskCard";
 import { Category } from "../../interfaces/Categories";
 import { useTasks } from "../../hooks/useTasks";
+import Header from "../../components/Header";
 
 function Home() {
-  const { logout } = useAuth();
   const { getUserData, data } = useUser();
   const { getCategories, categories } = useCategories();
   const { patchTask } = useTasks();
@@ -28,9 +27,6 @@ function Home() {
       getCategories(id);
     }
   }, []);
-  function handleLogout() {
-    logout();
-  }
 
   function handleDragEnd(result: DropResult) {
     if (!result.destination) return;
@@ -63,21 +59,18 @@ function Home() {
     return <Loading />;
   }
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-start overflow-y-auto px-4">
-      <div className="mb-6 flex w-full justify-between px-2 py-4">
-        <p>
-          Olá <span>{data.name}</span>
-        </p>
-        <button onClick={handleLogout}>Sair</button>
-      </div>
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-y-auto">
+      <Header user={data} />
       <DragDropContext onDragEnd={handleDragEnd}>
         <section
-          className="flex w-[80%] max-w-[80%] flex-col items-center justify-center overflow-x-auto text-center selection:bg-zinc-100
+          className="absolute top-20 flex w-[80%] max-w-[80%] flex-col items-center justify-center overflow-x-auto text-center selection:bg-zinc-100
     dark:selection:bg-slate-300
     dark:selection:text-slate-900"
         >
           <div className="flex h-auto max-h-[500px] w-full flex-col justify-between space-y-4 overflow-hidden rounded-md bg-zinc-400 px-6 py-4 dark:bg-slate-800">
-            <h2 className="font-details text-2xl font-bold">Kanban Board</h2>
+            <h2 className="font-details text-2xl font-black tracking-wider">
+              Board
+            </h2>
             <div className="flex h-auto max-h-[460px] w-full items-start justify-center space-x-6 overflow-hidden">
               {categories.map((category) => {
                 return (
@@ -89,7 +82,9 @@ function Home() {
                         className="max-h-[420px] w-full overflow-y-auto rounded bg-zinc-500 py-4 text-center dark:bg-slate-900"
                         key={category.id}
                       >
-                        <span>{category.name}</span>
+                        <span className="text-lg font-bold">
+                          {category.name}
+                        </span>
                         <div className="w-full overflow-hidden rounded px-6 pb-4">
                           <div>
                             {category.tasks.map((task: Tasks, index) => {
