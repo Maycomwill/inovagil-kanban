@@ -2,20 +2,12 @@ import { createContext, ReactNode, useState } from "react";
 import api from "../lib/axios";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
-import { Category } from "../interfaces/Categories";
+import { UserData } from "../interfaces/User";
 
 export interface UserContextProps {
   isLoading: boolean;
   data: UserData | undefined
   getUserData: () => void;
-}
-
-interface UserData {
-  name: string;
-  email: string;
-  createdAt: string;
-  id: string;
-  categories: Category[];
 }
 
 export const UserContext = createContext({} as UserContextProps);

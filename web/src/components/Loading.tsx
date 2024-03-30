@@ -1,11 +1,13 @@
 import { Loader2 } from "lucide-react";
-import colors from "tailwindcss/colors";
 
 function Loading() {
   return (
-    <div className="animate-spin">
-      <div className="animate-pulse">
-        <Loader2 size={32} color={colors.emerald[500]} />
+    <div className="flex items-center justify-center">
+      <div className="animate-spin">
+        <Loader2
+          size={64}
+          className="animate-pulse text-blue-500 dark:text-zinc-100"
+        />
       </div>
     </div>
   );
