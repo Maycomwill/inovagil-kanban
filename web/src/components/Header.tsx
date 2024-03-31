@@ -29,13 +29,13 @@ function Header({ user }: { user: UserData }) {
     //     </div>
     //   </div>
     // </div>
-    <div className="bg-fit bg-pattern flex h-28 max-h-28 w-full flex-1 flex-row items-center justify-between pb-8">
-      <div className="md:pl-12">
+    <div className="bg-fit flex h-28 max-h-28 w-full flex-1 flex-row items-center justify-between bg-pattern pb-8">
+      <div className="pl-4 md:pl-12">
         <span className="select-none text-2xl font-bold text-zinc-100">
           Kan<span className="text-yellow-500">Ban</span>
         </span>
       </div>
-      <div className="group mt-8 flex flex-col items-center justify-center  space-y-1 text-center md:mr-12">
+      <div className="group mr-4 md:mt-8 mt-2 flex flex-col items-center justify-center space-y-1 text-center md:mr-12">
         <div className="w-full items-center justify-center text-center">
           <span className="text-xl font-bold capitalize text-zinc-100">
             {user.name.split(" ")[0]}

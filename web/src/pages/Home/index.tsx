@@ -9,6 +9,7 @@ import { useTasks } from "../../hooks/useTasks";
 import Header from "../../components/Header";
 import Board from "../../components/DroppableZones/Board";
 import TrashCan from "../../components/DroppableZones/TrashCan";
+import AddBtn from "../../components/PopOver/AddBtn";
 
 function Home() {
   const { getUserData, data } = useUser();
@@ -65,7 +66,7 @@ function Home() {
     return <Loading />;
   }
   return (
-    <div className="relative flex min-h-screen w-full flex-col items-center justify-start overflow-y-auto">
+    <div className="relative flex min-h-screen w-full flex-col items-center overflow-y-auto">
       <Header user={data} />
       <DragDropContext onDragEnd={handleDragEnd}>
         <section
@@ -73,11 +74,11 @@ function Home() {
     selection:bg-zinc-100
     dark:selection:bg-slate-300 dark:selection:text-slate-900"
         >
-          <div className="flex h-auto max-h-[500px] w-full flex-col justify-between space-y-4 overflow-hidden rounded-md bg-zinc-400 px-6 py-4 dark:bg-slate-800">
+          <div className="mb-6 flex h-auto w-full flex-col justify-between space-y-4 overflow-hidden rounded-md bg-zinc-400 px-6 py-4 dark:bg-slate-800">
             <h2 className="font-details text-2xl font-black tracking-wider">
               Board
             </h2>
-            <div className="flex h-auto max-h-[460px] w-full items-start justify-evenly space-x-6 overflow-hidden">
+            <div className="flex h-auto min-h-[460px] w-full flex-col space-y-4  md:grid md:grid-cols-3 md:gap-2 md:space-y-0">
               {isLoading ? (
                 <Loading />
               ) : (
@@ -90,6 +91,7 @@ function Home() {
         </section>
         <TrashCan />
       </DragDropContext>
+      <AddBtn />
     </div>
   );
 }

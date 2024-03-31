@@ -6,7 +6,7 @@ import { AppProviderRoutes } from "./routes/app.routes";
 function App() {
   const { isLoading } = useAuth();
   return (
-    <div className="min-w-screen min-h-screen bg-zinc-100 text-zinc-900 dark:bg-slate-900 dark:text-zinc-100">
+    <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-slate-900 dark:text-zinc-100">
       <AppProvider>
         {isLoading ? <Loading /> : <AppProviderRoutes />}
       </AppProvider>
