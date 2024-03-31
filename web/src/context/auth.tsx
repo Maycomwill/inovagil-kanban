@@ -22,7 +22,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 
   async function verify() {
     setIsLoading(true);
-    const localStorageToken = localStorage.getItem("token");
+    const localStorageToken = localStorage.getItem("inovagil-kanban-token");
 
     if (localStorageToken && localStorageToken !== null) {
       try {
@@ -31,7 +31,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         });
 
         if (!data.status) {
-          localStorage.removeItem("token");
+          localStorage.removeItem("inovagil-kanban-token");
           setAuth(false);
           setIsLoading(false);
           return;
@@ -41,7 +41,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         return;
       } catch (error) {
         if (error instanceof AxiosError && error.response) {
-          localStorage.removeItem("token");
+          localStorage.removeItem("inovagil-kanban-token");
           setAuth(false);
           return;
         }
@@ -69,7 +69,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         return toast.error(data.message);
       }
       setAuth(true);
-      localStorage.setItem("token", data.data.token);
+      localStorage.setItem("inovagil-kanban-token", data.data.token);
       localStorage.setItem("userData", data.data.user.id);
       setIsLoading(false);
       return toast.success(data.message);
@@ -83,7 +83,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 
   function logout() {
     setAuth(false);
-    localStorage.removeItem("token");
+    localStorage.removeItem("inovagil-kanban-token");
     setIsLoading(false);
     return;
   }

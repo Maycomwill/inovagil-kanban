@@ -10,11 +10,11 @@ function Board({ category }: { category: Category }) {
         <div
           {...provided.droppableProps}
           ref={provided.innerRef}
-          className="max-h-[420px] w-full overflow-y-auto rounded bg-zinc-500 py-4 text-center dark:bg-slate-900"
+          className="max-h-[320px] h-[320px] w-full rounded bg-zinc-500 py-4 text-center dark:bg-slate-900"
         >
           <span className="text-lg font-bold">{category.name}</span>
-          <div className="w-full overflow-hidden rounded px-6 pb-4">
-            <div>
+          <div className="w-full overflow-hidden rounded px-2 pb-4">
+            <div className="max-h-[240px] pb-2 px-2 overflow-y-auto">
               {category.tasks.map((task: Tasks, index) => {
                 return (
                   <Draggable key={task.id} draggableId={task.id} index={index}>

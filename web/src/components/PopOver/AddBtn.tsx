@@ -1,8 +1,8 @@
 import * as Popover from "@radix-ui/react-popover";
 import { PlusCircle, X } from "lucide-react";
 import { useState } from "react";
-import colors from "tailwindcss/colors";
-import CreateCategory from "../Dialogs/CreateCategory";
+import CreateCategory from "../Dialogs/CreateCategoryDialog";
+import CreateTask from "../Dialogs/CreateTaskDialog";
 
 function AddBtn() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,18 +29,10 @@ function AddBtn() {
                 className="z-100 absolute right-2 top-2 text-red-600 hover:text-red-500"
               />
             </Popover.Close>
-            <Popover.Arrow fill={colors.slate[700]} />
-            <div className="flex flex-col space-y-4 text-zinc-900 dark:text-zinc-100">
+            <Popover.Arrow className="fill-zinc-200 dark:fill-slate-700" />
+            <div className="flex flex-col w-full items-center justify-start space-y-4 text-zinc-900 dark:text-zinc-100">
               <CreateCategory />
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-                type="button"
-                className="w-full rounded bg-blue-800 px-4 py-2 text-zinc-50 outline-none transition-colors duration-150 ease-in-out hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-200"
-              >
-                Criar tarefa
-              </button>
+              <CreateTask />
             </div>
           </Popover.Content>
         </div>

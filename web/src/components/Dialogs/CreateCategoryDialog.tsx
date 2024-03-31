@@ -9,22 +9,20 @@ function CreateCategory() {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const { createCategory, isLoading } = useCategories();
+
   function handleCreate() {
     createCategory(name);
     setIsOpen(false);
   }
   return (
     <Dialog.Root open={isOpen}>
-      <Dialog.Trigger>
-        <button
-          onClick={() => {
-            setIsOpen(true);
-          }}
-          type="button"
-          className="w-full rounded bg-blue-800 px-4 py-2 text-zinc-50 outline-none transition-colors duration-150 ease-in-out hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-200"
-        >
-          Criar categoria
-        </button>
+      <Dialog.Trigger
+        className="w-full rounded bg-blue-800 px-4 py-2 text-zinc-50 outline-none transition-colors duration-150 ease-in-out hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-200"
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        <span>Criar categoria</span>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/20">

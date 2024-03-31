@@ -3,10 +3,10 @@ import { InputHTMLAttributes } from "react";
 interface InputContentProps extends InputHTMLAttributes<HTMLInputElement> {
   type: "text" | "email" | "password";
   id: string;
-  placeholder: string;
+  placeholder?: string;
   label: string
 }
-function InputContent({ type, id, label, placeholder, ...rest }: InputContentProps) {
+function InputContent({ type, id, label, placeholder = "", ...rest }: InputContentProps) {
   return (
     <>
       <label htmlFor={id}>{label}</label>

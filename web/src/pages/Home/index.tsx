@@ -70,15 +70,13 @@ function Home() {
       <Header user={data} />
       <DragDropContext onDragEnd={handleDragEnd}>
         <section
-          className="z-1 absolute top-20 flex w-[80%] max-w-[80%] flex-col items-center justify-center overflow-x-auto text-center
-    selection:bg-zinc-100
-    dark:selection:bg-slate-300 dark:selection:text-slate-900"
+          className="z-1 absolute top-24 flex w-[85%] max-w-[85%] flex-col items-center justify-center overflow-x-auto text-center selection:bg-zinc-100 dark:selection:bg-slate-300 dark:selection:text-slate-900"
         >
-          <div className="mb-6 flex h-auto w-full flex-col justify-between space-y-4 overflow-hidden rounded-md bg-zinc-400 px-6 py-4 dark:bg-slate-800">
+          <div className="mb-6 flex h-auto min-h-[420] w-full flex-col justify-start space-y-4 overflow-hidden rounded-md bg-zinc-400 px-6 py-4 dark:bg-slate-800">
             <h2 className="font-details text-2xl font-black tracking-wider">
               Board
             </h2>
-            <div className="flex h-auto min-h-[460px] w-full flex-col space-y-4  md:grid md:grid-cols-3 md:gap-2 md:space-y-0">
+            <div className="flex w-full flex-col space-y-4 md:grid md:grid-cols-3 md:gap-2 md:space-y-0 px-0">
               {isLoading ? (
                 <Loading />
               ) : (
