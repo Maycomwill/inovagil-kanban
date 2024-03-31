@@ -24,8 +24,8 @@ export function CategoriesContextProvider({
   async function getCategories(ownerId: string) {
     setIsLoading(true);
     try {
-      const categories = await api.get(`/categories/user/${ownerId}`);
-      setCategories(categories.data.data);
+      const { data } = await api.get(`/categories/user/${ownerId}`);
+      setCategories(data.data);
       setIsLoading(false);
     } catch (error) {
       if (error instanceof AxiosError && error.response) {

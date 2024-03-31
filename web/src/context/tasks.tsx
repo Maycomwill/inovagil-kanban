@@ -4,14 +4,15 @@ import { toast } from "sonner";
 import api from "../lib/axios";
 
 export interface TasksContextProps {
-  isLoading: boolean;
+  taskLoading: boolean;
   patchTask: ({ id, categoryId }: { id: string; categoryId: string }) => void;
+  deleteTask: (id: string) => void;
 }
 
 export const TasksContext = createContext({} as TasksContextProps);
 
 export function TasksContextProvider({ children }: { children: ReactNode }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [taskLoading, setTaskLoading] = useState(false);
 
   async function patchTask({
     id,
@@ -20,25 +21,42 @@ export function TasksContextProvider({ children }: { children: ReactNode }) {
     id: string;
     categoryId: string;
   }) {
-    setIsLoading(true);
+    setTaskLoading(true);
     try {
       const { data } = await api.patch("/tasks", {
         id,
         categoryId,
       });
 
-      setIsLoading(false);
+      setTaskLoading(false);
       return toast.success(data.message);
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
-        setIsLoading(false);
+        setTaskLoading(false);
         return toast.error(error.response.data.message);
       }
     }
   }
 
+  async function deleteTask(id: string) {
+    setTaskLoading(true)
+    try {
+      const {data} = await api.delete(`/tasks/${id}`)
+
+      setTaskLoading(false)
+      toast.success(data.message)
+      return
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        setTaskLoading(false);
+        return toast.error(error.response.data.message);
+      }
+    }
+    console.log("Task id", id);
+  }
+
   return (
-    <TasksContext.Provider value={{ isLoading, patchTask }}>
+    <TasksContext.Provider value={{ taskLoading, patchTask, deleteTask }}>
       {children}
     </TasksContext.Provider>
   );
