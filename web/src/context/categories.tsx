@@ -9,6 +9,7 @@ export interface CategoriesContextProps {
   categories: Category[] | undefined;
   getCategories: (ownerId: string) => void;
   createCategory: (name: string) => void;
+  deleteCategory: (categoryId: string) => void;
 }
 
 export const CategoriesContext = createContext({} as CategoriesContextProps);
@@ -55,9 +56,29 @@ export function CategoriesContextProvider({
       });
       setIsLoading(false);
       toast.success(data.message);
-      return setTimeout(()=>{
-        window.location.reload()
-      }, 2000)
+      return setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        setIsLoading(false);
+        return toast.error(error.response.data.message);
+      }
+    }
+  }
+
+  async function deleteCategory(categoryId: string) {
+    if (categoryId === "") {
+      return toast.warning("Categoria inválida");
+    }
+    setIsLoading(true);
+    try {
+      const { data } = await api.delete(`/categories/${categoryId}`);
+      toast.success(data.message);
+      setIsLoading(false);
+      return setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
         setIsLoading(false);
@@ -68,7 +89,13 @@ export function CategoriesContextProvider({
 
   return (
     <CategoriesContext.Provider
-      value={{ isLoading, categories, getCategories, createCategory }}
+      value={{
+        isLoading,
+        categories,
+        getCategories,
+        createCategory,
+        deleteCategory,
+      }}
     >
       {children}
     </CategoriesContext.Provider>
