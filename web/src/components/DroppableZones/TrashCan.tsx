@@ -7,7 +7,7 @@ function TrashCan() {
         <div
           {...provided.droppableProps}
           ref={provided.innerRef}
-          className="z-100 absolute bottom-4 right-10 p-2 text-red-600 hover:text-red-500"
+          className="z-100 fixed bottom-4 right-10 p-2 text-red-600 hover:text-red-500 hover:ring-2 hover:ring-red-500 rounded-full transition-all duration-150 ease-in-out"
         >
           <Trash2 size={32} />
         </div>
