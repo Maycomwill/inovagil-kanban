@@ -6,8 +6,16 @@ import { UserData } from "../interfaces/User";
 
 export interface UserContextProps {
   isLoading: boolean;
-  data: UserData | undefined
+  data: UserData | undefined;
   getUserData: () => void;
+  createUser: (data: SignupProps) => void;
+}
+
+interface SignupProps {
+  name: string;
+  email: string;
+  password: string;
+  repassword: string;
 }
 
 export const UserContext = createContext({} as UserContextProps);
@@ -35,8 +43,40 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function createUser(data: SignupProps) {
+    const { name, email, password, repassword } = data;
+    if (password !== repassword) {
+      return toast.warning("As senhas devem ser idênticas");
+    }
+    if (password.length <= 5) {
+      return toast.info("A senha deve ter no mínimo 6 caracteres");
+    }
+    if (name === "" || email === "") {
+      return toast.warning("O nome e email são obrigatórios");
+    }
+
+    setIsLoading(true);
+    try {
+      const { data } = await api.post("/user", {
+        name,
+        email,
+        password,
+      });
+      setIsLoading(false);
+      toast.success(data.message);
+      return setTimeout(() => {
+        location.replace("/");
+      }, 1000);
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        setIsLoading(false);
+        return toast.error(error.response.data.message);
+      }
+    }
+  }
+
   return (
-    <UserContext.Provider value={{ isLoading, data, getUserData }}>
+    <UserContext.Provider value={{ isLoading, data, getUserData, createUser }}>
       {children}
     </UserContext.Provider>
   );

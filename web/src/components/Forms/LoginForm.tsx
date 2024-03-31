@@ -3,10 +3,12 @@ import { useAuth } from "../../hooks/useAuth";
 import Loading from "../Loading";
 import { Input } from "../Input";
 import { Lock, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigate()
   const { login, isLoading } = useAuth();
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -63,7 +65,7 @@ function LoginForm() {
       <div className="w-full text-center text-sm">
         <p>
           Não possui uma conta?{" "}
-          <span className="cursor-pointer font-bold text-blue-800 hover:text-blue-700 hover:underline">
+          <span className="cursor-pointer font-bold text-blue-800 hover:text-blue-700 hover:underline" onClick={()=>navigation("/register")}>
             Registre-se
           </span>{" "}
           agora mesmo
