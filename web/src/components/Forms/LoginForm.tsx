@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigate()
+  const navigation = useNavigate();
   const { login, isLoading } = useAuth();
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -22,7 +22,7 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-3/4 flex-col items-center justify-center space-y-4"
+      className="flex w-full flex-col items-center justify-center space-y-4 md:w-3/4"
     >
       <Input.Root>
         <Input.Content
@@ -65,7 +65,10 @@ function LoginForm() {
       <div className="w-full text-center text-sm">
         <p>
           Não possui uma conta?{" "}
-          <span className="cursor-pointer font-bold text-blue-800 hover:text-blue-700 hover:underline" onClick={()=>navigation("/register")}>
+          <span
+            className="cursor-pointer font-bold text-blue-800 hover:text-blue-700 hover:underline"
+            onClick={() => navigation("/register")}
+          >
             Registre-se
           </span>{" "}
           agora mesmo
