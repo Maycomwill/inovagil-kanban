@@ -11,7 +11,7 @@ function Login() {
           className="size-72 md:size-[36rem]"
         />
       </div>
-      <div className="relative flex w-full flex-1 items-start justify-center rounded-t-2xl bg-zinc-100 pt-12 md:w-2/5 md:pt-0 dark:bg-slate-900">
+      <div className="relative flex w-full flex-1 items-start md:items-center justify-center rounded-t-2xl md:rounded-none bg-zinc-100 pt-12 md:w-2/5 md:pt-0 dark:bg-slate-900">
         <div className="absolute top-4 h-2 w-1/2 rounded-full bg-zinc-300 md:invisible" />
         <div className="flex w-full flex-col items-center justify-center px-4">
           <h1 className="fong-regular mb-4 w-full text-center text-xl md:w-3/4">
