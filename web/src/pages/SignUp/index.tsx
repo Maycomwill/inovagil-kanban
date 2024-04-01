@@ -14,8 +14,8 @@ function SignUp() {
           alt="SignUp illustration"
         />
       </div>
-      <div className="relative flex w-full flex-1 flex-col items-start justify-center rounded-t-2xl bg-zinc-100 pt-6 md:w-2/5 md:pt-0 dark:bg-slate-900">
-        <div className="absolute h-2 w-1/2 top-4 translate-x-1/2 rounded-full  bg-zinc-100 md:invisible" />
+      <div className="relative flex min-h-screen w-full flex-1 flex-col items-start justify-center rounded-t-2xl bg-zinc-100 pt-6 md:w-2/5 md:items-center md:rounded-none md:pt-0 dark:bg-slate-900">
+        <div className="absolute top-4 h-2 w-1/2 translate-x-1/2 rounded-full  bg-zinc-100 md:invisible" />
         {isLoading ? <Loading /> : <SignUpForm />}
       </div>
     </div>
